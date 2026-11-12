@@ -1,0 +1,3 @@
+C_{m1} = \frac{\varepsilon_0 \pi r^2}{d + r - \sqrt{r^2 + d^2}}
+C_{m2} = \frac{\varepsilon_0 \pi r^2}{d}
+C_{m3} = \varepsilon_0 \, r \left( \frac{\pi r}{d} + 2 \ln\!\left(\frac{8 \pi r}{d}\right) - 2 \right)

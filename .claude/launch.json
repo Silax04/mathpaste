@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "taskpane-preview", "runtimeExecutable": "node", "runtimeArgs": ["scripts/serve-dist.mjs", "--http"], "port": 3010, "env": { "PORT": "3010" } }
+  ]
+}

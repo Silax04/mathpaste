@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+           xsi:type="TaskPaneApp">
+  <Id>54c02531-8874-4ffa-8ce8-d3a412be9e39</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>MathPaste</ProviderName>
+  <DefaultLocale>fr-FR</DefaultLocale>
+  <DisplayName DefaultValue="MathPaste"/>
+  <Description DefaultValue="Convertit du LaTeX en équations natives Word (OMML), depuis un panneau ou directement sur la sélection."/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
+  <SupportUrl DefaultValue="https://localhost:3000/taskpane.html"/>
+  <AppDomains>
+    <AppDomain>https://localhost:3000</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.3">
+      <Set Name="WordApi" MinVersion="1.3"/>
+    </Sets>
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <Runtimes>
+          <!-- Shared runtime: task pane + ribbon command + keyboard shortcut share one JS context -->
+          <Runtime resid="Taskpane.Url" lifetime="long"/>
+        </Runtimes>
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="Taskpane.Url"/>
+          </GetStarted>
+          <FunctionFile resid="Taskpane.Url"/>
+
+          <!-- Ribbon: dedicated "MathPaste" tab -->
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="MathPaste.Tab">
+              <Group id="MathPaste.Group">
+                <Label resid="Group.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16"/>
+                  <bt:Image size="32" resid="Icon.32"/>
+                  <bt:Image size="80" resid="Icon.80"/>
+                </Icon>
+                <Control xsi:type="Button" id="MathPaste.Convert">
+                  <Label resid="Convert.Label"/>
+                  <Supertip>
+                    <Title resid="Convert.Label"/>
+                    <Description resid="Convert.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Convert.16"/>
+                    <bt:Image size="32" resid="Convert.32"/>
+                    <bt:Image size="80" resid="Convert.80"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>convertSelection</FunctionName>
+                  </Action>
+                </Control>
+                <Control xsi:type="Button" id="MathPaste.Taskpane">
+                  <Label resid="Taskpane.Label"/>
+                  <Supertip>
+                    <Title resid="Taskpane.Label"/>
+                    <Description resid="Taskpane.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16"/>
+                    <bt:Image size="32" resid="Icon.32"/>
+                    <bt:Image size="80" resid="Icon.80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>MathPaste.TaskpaneId</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+              <Label resid="Tab.Label"/>
+            </CustomTab>
+          </ExtensionPoint>
+
+          <!-- Right-click menu on text -->
+          <ExtensionPoint xsi:type="ContextMenu">
+            <OfficeMenu id="ContextMenuText">
+              <Control xsi:type="Button" id="MathPaste.ContextConvert">
+                <Label resid="Convert.Label"/>
+                <Supertip>
+                  <Title resid="Convert.Label"/>
+                  <Description resid="Convert.Tooltip"/>
+                </Supertip>
+                <Icon>
+                  <bt:Image size="16" resid="Convert.16"/>
+                  <bt:Image size="32" resid="Convert.32"/>
+                  <bt:Image size="80" resid="Convert.80"/>
+                </Icon>
+                <Action xsi:type="ExecuteFunction">
+                  <FunctionName>convertSelection</FunctionName>
+                </Action>
+              </Control>
+            </OfficeMenu>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
+        <bt:Image id="Icon.32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+        <bt:Image id="Icon.80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
+        <bt:Image id="Convert.16" DefaultValue="https://localhost:3000/assets/convert-16.png"/>
+        <bt:Image id="Convert.32" DefaultValue="https://localhost:3000/assets/convert-32.png"/>
+        <bt:Image id="Convert.80" DefaultValue="https://localhost:3000/assets/convert-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="MathPaste est prêt"/>
+        <bt:String id="Tab.Label" DefaultValue="MathPaste"/>
+        <bt:String id="Group.Label" DefaultValue="Équations LaTeX"/>
+        <bt:String id="Convert.Label" DefaultValue="Convert to Formula"/>
+        <bt:String id="Taskpane.Label" DefaultValue="Panneau MathPaste"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Onglet MathPaste : collez du LaTeX dans le panneau ou sélectionnez du LaTeX dans le document et cliquez Convert to Formula."/>
+        <bt:String id="Convert.Tooltip" DefaultValue="Remplace le LaTeX sélectionné par une équation Word native (Ctrl+Alt+Maj+M)."/>
+        <bt:String id="Taskpane.Tooltip" DefaultValue="Ouvre le panneau MathPaste pour coller, prévisualiser et insérer du LaTeX."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+  <!-- Keyboard shortcut (requires the shared runtime; supported by recent Word builds) -->
+  <ExtendedOverrides Url="https://localhost:3000/shortcuts.json"/>
+</OfficeApp>

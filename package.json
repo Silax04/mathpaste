@@ -1,0 +1,52 @@
+{
+  "name": "mathpaste",
+  "version": "1.0.0",
+  "description": "MathPaste - convertit du LaTeX en équations natives Microsoft Word (OMML)",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "dev-server": "webpack serve --mode development",
+    "start": "office-addin-debugging start manifest.xml desktop",
+    "stop": "office-addin-debugging stop manifest.xml",
+    "certs": "office-addin-dev-certs install",
+    "validate": "office-addin-manifest validate manifest.xml",
+    "serve:prod": "node scripts/serve-dist.mjs",
+    "test": "vitest run",
+    "test:word": "npx tsx scripts/gen-word-fixtures.ts && powershell -ExecutionPolicy Bypass -File scripts/word-validate.ps1",
+    "typecheck": "tsc --noEmit",
+    "preview:ui": "npm run build && node scripts/serve-dist.mjs --http",
+    "icons": "powershell -ExecutionPolicy Bypass -File scripts/make-icons.ps1"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "temml": "^0.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/office-js": "^1.0.617",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "office-addin-debugging": "^7.0.1",
+    "office-addin-dev-certs": "^3.0.1",
+    "office-addin-manifest": "^3.0.1",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.8",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.0"
+  },
+  "config": {
+    "app_to_debug": "word",
+    "app_type_to_debug": "desktop",
+    "dev_server_port": 3000
+  }
+}

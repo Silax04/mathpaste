@@ -1,0 +1,17 @@
+{
+  "actions": [
+    {
+      "id": "ConvertToFormulaShortcut",
+      "type": "ExecuteFunction",
+      "name": "Convert to Formula"
+    }
+  ],
+  "shortcuts": [
+    {
+      "action": "ConvertToFormulaShortcut",
+      "key": {
+        "default": "Ctrl+Alt+Shift+M"
+      }
+    }
+  ]
+}
