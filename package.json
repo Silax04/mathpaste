@@ -1,6 +1,6 @@
 {
   "name": "mathpaste",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MathPaste - convertit du LaTeX en équations natives Microsoft Word (OMML)",
   "private": true,
   "license": "MIT",
